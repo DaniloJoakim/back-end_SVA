@@ -1,0 +1,7 @@
+node_modules
+.env
+dist
+package-lock.json
+sql/1.create_table_usuario.sql
+sql/2.create_table_aluno.sql
+

@@ -1,0 +1,16 @@
+{
+    "files.encoding": "utf8",
+    "editor.codeActionsOnSave": {
+        "source.fixAll.tslint": true
+    },
+    "gulptasks.pattern": "**/gulpfile*.js",
+    "gulptasks.filters": [
+        "!**/node_modules/**",
+        "!**/bower_components/**"
+    ],
+    "gulptasks.args": [],
+    "gulptasks.output.show": "Task Starts",
+    "gulptasks.notifications.executed": true,
+    "gulptasks.notifications.terminated": true,
+    "gulptasks.notifications.restarted": true
+}
