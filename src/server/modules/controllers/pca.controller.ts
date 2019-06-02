@@ -32,6 +32,14 @@ class VagasController {
             .catch(_.partial(Handlers.onError, res, `Erro ao atualizar aluno`))
     }
 
+    Remover(req: Request, res: Response) {
+        let alunoRemover: PossuiAlunoComp = req.body;
+        PossuiAlunoCompService
+            .Remove(alunoRemover)
+            .then(_.partial(Handlers.onSuccess, res))
+            .catch(_.partial(Handlers.onError, res, `Erro ao excluir aluno`))
+    }
+
 
 }
 

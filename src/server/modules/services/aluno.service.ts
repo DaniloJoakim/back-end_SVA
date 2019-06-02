@@ -47,8 +47,10 @@ class AlunoService {
             await Database.Open().then(async () => {
                 await Database.BeginTran();
 
-                await Database.ExecSQL("UPDATE aluno SET nome = ?, idade = ? WHERE id = ?", [aluno.nome, aluno.idade, aluno.id]);
-
+                await Database.ExecSQL(" UPDATE aluno SET nome= ?, idade=?, sobrenome= ?, datNasc= ?, estado= ?, cidade= ?, pais= ?, telefone= ?, celular= ?, instituicao= ?, curso= ?, status=?, periodo= ?, semestre=?, inicio= ?, termino= ?, conclusao= ?, alunoEmail= ? WHERE id=?", 
+                [aluno.nome, aluno.idade,aluno.sobrenome, aluno.datNasc, aluno.estado,  aluno.cidade,  aluno.pais,  aluno.telefone, aluno.celular, aluno.instituicao, aluno.curso,  aluno.status, aluno.periodo, aluno.semestre, aluno.inicio, aluno.termino, aluno.conclusao, aluno.alunoEmail, aluno.id]);
+               
+                
                 await Database.CommitTran();
             });
         } catch (err) {
@@ -73,7 +75,7 @@ class AlunoService {
         } finally {
             await Database.Close();
         }
-
+           
         return alunos;
     }
 

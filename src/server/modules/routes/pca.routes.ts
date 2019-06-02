@@ -18,6 +18,10 @@ class PossuiCompAlunoRoutes {
         return PossuiCompAluno.Alterar(req, res);
     }
 
+    remover(req: Request, res: Response){
+        return PossuiCompAluno.Remover(req, res);
+    }
+
 }
 
 export default new PossuiCompAlunoRoutes();

@@ -26,6 +26,8 @@ class PossuiAlunoCompService {
     }
 
     async Atualiza(id: number, dados: PossuiAlunoComp) {
+        console.log (id)
+        console.log (dados.id_aluno)
         if (id != dados.id_aluno){
             throw new BadRequestError();
         }
@@ -34,7 +36,26 @@ class PossuiAlunoCompService {
             await Database.Open().then(async () => {
                 await Database.BeginTran();
 
-                await Database.ExecSQL("UPDATE possui_comp_aluno SET  id_comp = ?, nivel = ? WHERE id_comp = ? AND id_aluno = ? AND nivel = ? ", [dados.id_comp, dados.nivel, dados.id_aluno]);
+                await Database.ExecSQL("UPDATE possui_comp_aluno SET nivel = ? WHERE id_comp = ? AND id_aluno = ? ", [dados.nivel, dados.id_comp, dados.id_aluno]);
+
+                await Database.CommitTran();
+            });
+        } catch (err) {
+            throw err;
+        } finally {
+            await Database.Close();
+        }
+
+        return dados;
+    }
+
+    async Remove( dados: PossuiAlunoComp) {
+        
+        try {
+            await Database.Open().then(async () => {
+                await Database.BeginTran();
+
+                await Database.ExecSQL("DELETE FROM possui_comp_aluno WHERE nivel = ? AND id_comp = ? AND id_aluno = ? ", [dados.nivel, dados.id_comp, dados.id_aluno]);
 
                 await Database.CommitTran();
             });
