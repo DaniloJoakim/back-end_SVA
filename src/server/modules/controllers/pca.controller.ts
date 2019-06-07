@@ -23,6 +23,14 @@ class VagasController {
             .catch(_.partial(Handlers.onError, res, `Erro ao buscar dados na tabela POSSUI_COMP_ALUNO`))
     }
 
+    ObterCompId(req: Request, res: Response) {
+        let id: number = parseInt(req.params.id);
+       PossuiAlunoCompService
+           .BuscaCompAluno(id)
+           .then(_.partial(Handlers.onSuccess, res))
+           .catch(_.partial(Handlers.onError, res, `Erro ao buscar dados na tabela POSSUI_COMP_ALUNO`))
+   }
+
     Alterar(req: Request, res: Response) {
         let id: number = parseInt(req.params.id);
         let alunoAtualizar: PossuiAlunoComp = req.body;

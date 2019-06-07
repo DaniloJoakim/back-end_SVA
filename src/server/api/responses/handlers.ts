@@ -32,7 +32,7 @@ class Handlers {
         const isMatch = bcrypt.compareSync(credenciais.senha, data.senha);
         if(isMatch) {
             const token = jwt.sign({sub: data.email, iss: "api"}, process.env.SECRET || '');
-            return res.status(HTTPStatus.OK).json({ nome: data.nome, email: data.email, token: token});
+            return res.status(HTTPStatus.OK).json({id: data.id-1, nome: data.nome, email: data.email, token: token});
         } else {
             return res.status(HTTPStatus.FORBIDDEN).json({ mensagem: "Credenciais inválidas." });
         }

@@ -86,6 +86,23 @@ class PossuiAlunoCompService {
         return dados;
     }
 
+    async BuscaCompAluno(id_al: number) {
+        let dados: PossuiAlunoComp[]= [];
+
+        try {
+            await Database.Open().then(async () => {
+                dados = await Database.ExecSQL("SELECT v.id as codigoVaga, c.descricao as descricaoCompetencia, pcv.nivel as nivelPossuiCompetenciaVaga FROM possui_comp_vagas AS pcv INNER JOIN vagas AS v ON v.id = pcv.id_vaga INNER JOIN competencia AS c ON c.id = pcv.id_comp INNER JOIN empresa AS e ON e.id = v.id_empre INNER JOIN possui_comp_aluno AS pca ON pca.id_comp = pcv.id_comp AND pca.nivel = pcv.nivel INNER JOIN aluno AS a	ON a.id = pca.id_aluno WHERE a.id = ?"
+                , [id_al]);
+            });
+        } catch (err) {
+            throw err;
+        } finally {
+            await Database.Close();
+        }
+
+        return dados;
+    }
+
    /* async Atualiza(id_al: number, id_com: PossuiAlunoComp) {
     if (id_al != dados.id){
             throw new BadRequestError();

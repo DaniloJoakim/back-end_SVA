@@ -30,7 +30,7 @@ class PossuiVagaCompService {
 
         try {
             await Database.Open().then(async () => {
-                dados = await Database.ExecSQL("SELECT pcv.id_comp AS codigoCompetencia, c.descricao AS descricaoCompetencia, pcv.id_vaga AS codigoVaga, v.descricao AS descricaoVaga FROM competencia AS c INNER JOIN possui_comp_vagas AS pcv ON c.id = pcv.id_comp INNER JOIN vagas AS v ON v.id = pcv.id_vaga WHERE pcv.id_vaga = ?"
+                dados = await Database.ExecSQL("SELECT pcv.id_comp AS codigoCompetencia, c.descricao AS descricaoCompetencia, pcv.id_vaga AS codigoVaga, pcv.nivel as nivelCompetencia, v.descricao AS descricaoVaga FROM competencia AS c INNER JOIN possui_comp_vagas AS pcv ON c.id = pcv.id_comp INNER JOIN vagas AS v ON v.id = pcv.id_vaga WHERE pcv.id_vaga = ?"
                 , [id_al]);
             });
         } catch (err) {
@@ -41,6 +41,8 @@ class PossuiVagaCompService {
 
         return dados;
     }
+
+   
 
    /* async Atualiza(id_al: number, id_com: PossuiAlunoComp) {
     if (id_al != dados.id){

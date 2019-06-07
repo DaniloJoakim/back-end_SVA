@@ -40,8 +40,9 @@ class Routes {
 
         app.route('/aluno/competencia').all(authz).post(PossuiCompAluno.criar);
         app.route('/aluno/competencia/:id').all(authz).get(PossuiCompAluno.obterPorId);
+        app.route('/aluno/competencia/relacionadas/:id').all(authz).get(PossuiCompAluno.obterPorIdComp);
         app.route('/aluno/competencia/atualizar/:id').all(authz).put(PossuiCompAluno.atualizar);
-        
+
         app.route('/aluno/competencia/excluir').all(authz).put(PossuiCompAluno.remover);
 
         app.route('/vaga/competencia').all(authz).post(PossuiCompVaga.criar);

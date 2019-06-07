@@ -14,6 +14,10 @@ class PossuiCompAlunoRoutes {
         return PossuiCompAluno.ObterPorId(req, res);
     }
 
+    obterPorIdComp(req: Request, res: Response){
+        return PossuiCompAluno.ObterCompId(req, res);
+    }
+
     atualizar(req: Request, res: Response){
         return PossuiCompAluno.Alterar(req, res);
     }
